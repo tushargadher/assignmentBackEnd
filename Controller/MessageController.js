@@ -2,13 +2,14 @@ const Message = require("../Models/MessageModel");
 
 //send message
 const sendMessage = async (req, res) => {
-  const { user, value } = req.body;
+  const { senderId, senderName, content } = req.body;
   if (!value) {
     return res.status(400).send("Please Enter Message");
   }
   var newMessage = {
-    user: user,
-    content: value,
+    senderId,
+    senderName,
+    content,
   };
   try {
     var message = await Message.create(newMessage);
