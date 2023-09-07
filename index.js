@@ -49,6 +49,11 @@ io.on("connection", (socket) => {
       name: users[socket.id],
     });
   });
+
+  socket.on("disconnect", (messsage) => {
+    socket.broadcast.emit("left", users[socket.id]);
+    delete users[socket.id];
+  });
 });
 
 // emit -> is used to trigger an event ·
